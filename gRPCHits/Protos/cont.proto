@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "gRPCHits";
+
+package Cont;
+
+service CounterSvc {
+  rpc GenerateValue (CounterRequest) returns (CounterReply);
+}
+
+message CounterRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message CounterReply {
+  string message = 1;
+  int32 currentValue = 2;
+  string localSvc = 3;
+  string targetFramework = 4;
+}

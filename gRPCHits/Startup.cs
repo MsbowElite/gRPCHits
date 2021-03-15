@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace gRPCContagem
+namespace gRPCHits
 {
     public class Startup
     {
@@ -25,7 +25,7 @@ namespace gRPCContagem
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<ContadorService>();
+                endpoints.MapGrpcService<CounterService>();
 
                 endpoints.MapGet("/", async context =>
                 {

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 
-namespace gRPCContagem
+namespace gRPCHits
 {
-    public class ContadorService : ContadorSvc.ContadorSvcBase
+    public class CounterService : CounterSvc.CounterSvcBase
     {
-        private readonly ILogger<ContadorService> _logger;
-        private static Contador _CONTADOR = new Contador();
+        private readonly ILogger<CounterService> _logger;
+        private static Counter _COUNTER = new Counter();
         private static string _FRAMEWORK;
         private static string _LOCAL;
 
-        static ContadorService()
+        static CounterService()
         {
             _FRAMEWORK = Assembly
                         .GetEntryAssembly()?
@@ -25,23 +25,23 @@ namespace gRPCContagem
             _LOCAL = Environment.MachineName;
         }
 
-        public ContadorService(ILogger<ContadorService> logger)
+        public CounterService(ILogger<CounterService> logger)
         {
             _logger = logger;
         }
 
-        public override Task<ContadorReply> GerarValor(
-            ContadorRequest request, ServerCallContext context)
+        public override Task<CounterReply> GenerateValue(
+            CounterRequest request, ServerCallContext context)
         {
-            _CONTADOR.Incrementar();
-            int valorAtual = _CONTADOR.ValorAtual;
+            _COUNTER.Increment();
+            int currentValue = _COUNTER.CurrentValue;
 
-            _logger.LogInformation($"Valor atual: {valorAtual}");
+            _logger.LogInformation($"Current value: {currentValue}");
 
-            return Task.FromResult(new ContadorReply
+            return Task.FromResult(new CounterReply
             {
-                Mensagem = "Olá " + request.Nome,
-                ValorAtual = valorAtual,
+                Message = "Olá " + request.Name,
+                CurrentValue = currentValue,
                 LocalSvc = _LOCAL,
                 TargetFramework = _FRAMEWORK
             });
