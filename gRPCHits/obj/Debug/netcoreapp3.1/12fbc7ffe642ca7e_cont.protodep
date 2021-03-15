@@ -1,0 +1,2 @@
+obj\Debug\netcoreapp3.1\Protos/Cont.cs \
+obj\Debug\netcoreapp3.1\Protos/ContGrpc.cs: Protos/cont.proto

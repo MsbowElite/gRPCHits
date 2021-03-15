@@ -40,7 +40,7 @@ namespace gRPCHits
 
             return Task.FromResult(new CounterReply
             {
-                Message = "Olá " + request.Name,
+                Message = "Hello " + request.Name,
                 CurrentValue = currentValue,
                 LocalSvc = _LOCAL,
                 TargetFramework = _FRAMEWORK
